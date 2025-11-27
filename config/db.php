@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "website_sederhana";
+$db   = "website-sederhana";
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
