@@ -1,48 +1,60 @@
 <?php
 session_start();
-include "config/db.php";
+require_once "config/db.php";
+
+$error = "";
 
 if (isset($_POST['login'])) {
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $query = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND password='$password'");
+    $q = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND password='$password'");
 
-    if (mysqli_num_rows($query) > 0) {
-        $_SESSION['username'] = $username;
+    if (mysqli_num_rows($q) === 1) {
+        $_SESSION['email'] = $email;
         header("Location: dashboard.php");
-        exit();
+        exit;
     } else {
-        $error = "Username atau password salah!";
+        $error = "Email atau password salah!";
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<div class="container">
-    <h2>Login</h2>
+<div class="main-container">
+    <div class="card">
 
-    <form method="POST">
+        <h2 class="title">Sign in to <span class="green">Kesahatanku</span></h2>
 
-        <input type="text" name="username" placeholder="Username" required><br>
+        <div class="social">
+            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
+            <img src="https://cdn-icons-png.flaticon.com/512/3128/3128304.png">
+            <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png">
+        </div>
 
-        <input type="password" name="password" placeholder="Password" required><br>
+        <?php if ($error) echo "<div class='error'>$error</div>"; ?>
 
-        <button type="submit" name="login">Login</button>
+        <form method="POST">
+            <input type="text" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
 
-    </form>
+            <a href="#" class="forgot">Forgot your Password?</a>
 
-    <?php if (!empty($error)): ?>
-        <p class="error"><?= $error ?></p>
-    <?php endif; ?>
+            <button type="submit" name="login" class="btn">SIGN IN</button>
+        </form>
+
+        <p class="switch">Don't have an account? 
+            <a href="register.php">Sign Up</a>
+        </p>
+
+    </div>
 </div>
 
 </body>
