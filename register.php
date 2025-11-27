@@ -5,15 +5,17 @@ $success = "";
 $error = "";
 
 if (isset($_POST['register'])) {
-    $name = $_POST['name'];
+    $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $exists = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
+    // cek username atau email sudah ada
+    $exists = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' OR email='$email'");
+
     if (mysqli_num_rows($exists) > 0) {
-        $error = "Email sudah terdaftar!";
+        $error = "Username atau Email sudah digunakan!";
     } else {
-        mysqli_query($conn, "INSERT INTO users (name,email,password) VALUES ('$name','$email','$password')");
+        mysqli_query($conn, "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')");
         $success = "Akun berhasil dibuat! Silakan login.";
     }
 }
@@ -32,19 +34,13 @@ if (isset($_POST['register'])) {
 
         <h2 class="title">Create <span class="green">Account</span></h2>
 
-        <div class="social">
-            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
-            <img src="https://cdn-icons-png.flaticon.com/512/3128/3128304.png">
-            <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png">
-        </div>
-
         <?php 
         if ($success) echo "<div class='success'>$success</div>";
         if ($error) echo "<div class='error'>$error</div>";
         ?>
 
         <form method="POST">
-            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="username" placeholder="Username" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
 
@@ -60,4 +56,3 @@ if (isset($_POST['register'])) {
 
 </body>
 </html>
-

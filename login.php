@@ -11,7 +11,9 @@ if (isset($_POST['login'])) {
     $q = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND password='$password'");
 
     if (mysqli_num_rows($q) === 1) {
-        $_SESSION['email'] = $email;
+        $row = mysqli_fetch_assoc($q);
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['email'] = $row['email'];
         header("Location: dashboard.php");
         exit;
     } else {
@@ -33,19 +35,11 @@ if (isset($_POST['login'])) {
 
         <h2 class="title">Sign in to <span class="green">Kesahatanku</span></h2>
 
-        <div class="social">
-            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
-            <img src="https://cdn-icons-png.flaticon.com/512/3128/3128304.png">
-            <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png">
-        </div>
-
         <?php if ($error) echo "<div class='error'>$error</div>"; ?>
 
         <form method="POST">
-            <input type="text" name="email" placeholder="Email" required>
+            <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
-
-            <a href="#" class="forgot">Forgot your Password?</a>
 
             <button type="submit" name="login" class="btn">SIGN IN</button>
         </form>
