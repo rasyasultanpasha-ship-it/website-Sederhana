@@ -1,3 +1,5 @@
+<?php $baseURL = "http://website-sederhana.test/"; ?>
+
 <?php
 session_start();
 require_once "config/db.php";
@@ -37,8 +39,7 @@ if (isset($_POST['login'])) {
     <div class="card">
 
         <!-- LOGO -->
-     <img src="/website-Sederhana/assets/img/Bridgestone-Logo-500x281.png"
-     style="width:160px; margin-bottom:20px;" alt="logo">
+    <img src="<?= $baseURL ?>assets/img/Bridgestone-Logo-500x281.png" alt="logo" style="width:120px;">
 
         <!-- Judul mirip Figma -->
         <h2 class="title">Sign in to <span class="green">Website</span></h2>

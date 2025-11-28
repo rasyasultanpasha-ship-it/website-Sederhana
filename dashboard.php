@@ -213,27 +213,32 @@ include "config/db.php";
 
         <div class="table-box">
             <table>
-                <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Join Date</th>
-                    <th>Status</th>
-                </tr>
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Join Date</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
 
-                <?php
-                $no = 1;
-                $data = mysqli_query($conn, "SELECT * FROM customers ORDER BY id DESC");
-                while($row = mysqli_fetch_array($data)) {
-                ?>
-                <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $row['nama']; ?></td>
-                    <td><?= $row['join_date']; ?></td>
-                    <td><?= $row['status']; ?></td>
-                </tr>
-                <?php } ?>
+    <?php
+    $no = 1;
+    $data = mysqli_query($conn, "SELECT * FROM customers ORDER BY id DESC");
+    while($row = mysqli_fetch_array($data)) {
+    ?>
+    <tr>
+        <td><?= $no++; ?></td>
+        <td><?= $row['nama']; ?></td>
+        <td><?= $row['join_date']; ?></td>
+        <td><?= $row['status']; ?></td>
+        <td>
+            <a href="editCustomer.php?id=<?= $row['id']; ?>" style="color: blue;">Edit</a> |
+            <a href="deleteCustomer.php?id=<?= $row['id']; ?>" onclick="return confirm('Yakin ingin hapus?')" style="color: red;">Hapus</a>
+        </td>
+    </tr>
+    <?php } ?>
+</table>
 
-            </table>
         </div>
 
     </div>
