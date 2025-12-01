@@ -1,28 +1,16 @@
-<?php $baseURL = "http://website-sederhana.test/"; ?>
 
-<?php
+<?php 
 session_start();
+$baseURL = "http://website-sederhana.test/"; 
 require_once "config/db.php";
 
 $error = "";
-
-if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $q = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND password='$password'");
-
-    if (mysqli_num_rows($q) === 1) {
-        $row = mysqli_fetch_assoc($q);
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['email'] = $row['email'];
-        header("Location: dashboard.php");
-        exit;
-    } else {
-        $error = "Email atau password salah!";
-    }
+if(isset($_SESSION['error'])){
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -48,7 +36,8 @@ if (isset($_POST['login'])) {
             <div class="error"><?= $error ?></div>
         <?php endif; ?>
 
-        <form method="POST">
+        <form method="POST" action="prosesLogin.php">
+
 
             <input type="email" name="email" placeholder="Email" required>
 

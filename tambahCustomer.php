@@ -45,21 +45,70 @@ if(!isset($_SESSION['username'])){
         button:hover {
             background: #4736c7;
         }
+        .error {
+            background: #ffdddd;
+            border-left: 4px solid red;
+            padding: 10px;
+            margin: 10px 0;
+            color: #b10000;
+            border-radius: 6px;
+        }
     </style>
+
+    <script>
+        function validateForm() {
+            const name = document.forms["customerForm"]["nama"].value.trim();
+            const joinDate = document.forms["customerForm"]["join_date"].value;
+            const status = document.forms["customerForm"]["status"].value;
+            const today = new Date().toISOString().split("T")[0];
+
+            let errorMessage = "";
+
+            if (name.length < 3 || !/^[A-Za-z\s]+$/.test(name)) {
+                errorMessage += "Nama minimal 3 karakter dan hanya huruf!<br>";
+            }
+
+            if (joinDate === "") {
+                errorMessage += "Tanggal tidak boleh kosong!<br>";
+            } else if (joinDate > today) {
+                errorMessage += "Tanggal tidak boleh lebih dari hari ini!<br>";
+            }
+
+            if (status === "") {
+                errorMessage += "Status harus dipilih!<br>";
+            }
+
+            if (errorMessage !== "") {
+                document.getElementById("error-box").innerHTML = errorMessage;
+                document.getElementById("error-box").style.display = "block";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
 </head>
 
 <body>
 
 <div class="form-box">
     <h2>Add New Customer</h2>
-    <form action="prosesTambahCustomer.php" method="POST">
-        <input type="text" name="nama" placeholder="Customer Name" required>
-        <input type="date" name="join_date" required>
-        <select name="status" required>
-            <option value="Active">HRD</option>
-            <option value="Inactive">Karyawan</option>
-            <option value="Inactive">Magang</option>
+
+    <div id="error-box" class="error" style="display:none;"></div>
+
+    <form name="customerForm" action="prosesTambahCustomer.php" 
+          method="POST" onsubmit="return validateForm()">
+
+        <input type="text" name="nama" placeholder="Customer Name">
+        <input type="date" name="join_date">
+        <select name="status">
+            <option value="">-- Pilih Status --</option>
+            <option value="HRD">HRD</option>
+            <option value="Karyawan">Karyawan</option>
+            <option value="Magang">Magang</option>
         </select>
+
         <button type="submit">Save</button>
     </form>
 </div>

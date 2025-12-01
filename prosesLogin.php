@@ -2,24 +2,38 @@
 session_start();
 require "config/db.php";
 
-$email    = $_POST['email'];
-$password = $_POST['password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$query = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
-$data  = mysqli_fetch_assoc($query);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-if ($data) {
+    // Prepared Statement
+    $stmt = mysqli_prepare($conn, "SELECT id, username, password FROM users WHERE email = ?");
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $data = mysqli_fetch_assoc($result);
 
-    if (password_verify($password, $data['password'])) {
-        $_SESSION['login'] = true;
-        $_SESSION['username'] = $data['username'];
-        header("Location: dashboard.php");
-        exit;
+    if ($data) {
+
+        if (password_verify($password, $data['password'])) {
+
+            session_regenerate_id(true); // Anti Session Hijack
+            $_SESSION['login'] = true;
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['email'] = $email;
+
+            header("Location: dashboard.php");
+            exit;
+        } else {
+            $_SESSION['error'] = "Password salah!";
+        }
+
     } else {
-        echo "<script>alert('Password salah!'); window.location='login.php';</script>";
+        $_SESSION['error'] = "Email tidak terdaftar!";
     }
 
-} else {
-    echo "<script>alert('Email tidak ditemukan!'); window.location='login.php';</script>";
+    header("Location: login.php");
+    exit();
 }
 ?>
