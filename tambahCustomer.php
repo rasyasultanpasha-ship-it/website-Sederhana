@@ -65,7 +65,7 @@ if(!isset($_SESSION['username'])){
             let errorMessage = "";
 
             if (name.length < 3 || !/^[A-Za-z\s]+$/.test(name)) {
-                errorMessage += "Nama minimal 3 karakter dan hanya huruf!<br>";
+                errorMessage += "Nama hanya huruf!<br>";
             }
 
             if (joinDate === "") {

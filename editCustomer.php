@@ -96,7 +96,7 @@ if (!$data) {
             let msg = "";
 
             if (name.length < 3 || !/^[A-Za-z\s]+$/.test(name)) {
-                msg += "Nama minimal 3 karakter & hanya huruf!<br>";
+                msg += "Nama hanya huruf!<br>";
             }
 
             if (!joinDate) {
