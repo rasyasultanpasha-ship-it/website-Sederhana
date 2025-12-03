@@ -158,14 +158,12 @@ include "config/db.php";
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <h2>BRIDGESTONE</h2>
+         <img src="<?= $baseURL ?>assets/img/Bridgestone-Logo-500x281.png" alt="logo" style="width:120px;">
 
         <div class="menu">
             <a href="#" class="active">Dashboard</a>
-            <a href="#">Product</a>
-            <a href="#">Customers</a>
-            <a href="#">Income</a>
-            <a href="#">Promote</a>
+            <a href="#"> Data Customers</a>
+            <a href="#">informasi</a>
             <a href="#">Help</a>
         </div>
 
@@ -207,9 +205,9 @@ include "config/db.php";
         </div>
 
         <!-- Customers -->
-        <div class="section-title">All Customers</div>
+        <div class="section-title">Semua Customers</div>
 
-        <a href="tambahCustomer.php" class="add-btn">+ Add Customer</a>
+        <a href="tambahCustomer.php" class="add-btn">+ Tambah Customer</a>
 
         <div class="table-box">
             <table>

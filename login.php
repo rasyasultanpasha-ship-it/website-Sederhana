@@ -27,7 +27,8 @@ if(isset($_SESSION['error'])){
     <div class="card">
 
         <!-- LOGO -->
-    <img src="<?= $baseURL ?>assets/img/Bridgestone-Logo-500x281.png" alt="logo" style="width:120px;">
+        
+        
 
         <!-- Judul mirip Figma -->
         <h2 class="title">Sign in to <span class="green">Website</span></h2>
