@@ -128,10 +128,9 @@ if (!$data) {
         <div class="menu">
             <a href="dashboard.php" class="active">Dashboard</a>
             <a href="#">Product</a>
-            <a href="#">Customers</a>
-            <a href="#">Income</a>
-            <a href="#">Promote</a>
-            <a href="#">Help</a>
+            <a href="#"> Data Customers</a>
+            <a href="#">InFormasi</a>
+        
         </div>
         <a class="logout-btn" href="logout.php">Logout</a>
     </div>

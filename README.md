@@ -36,3 +36,4 @@ Pastikan berada di folder Laragon → `C:\laragon\www\`
 
 ```sh
 git clone https://github.com/<username>/website-Sederhana.git
+![Screenshot Tampilan UI](assets/img/Tampilan_ui.png)
