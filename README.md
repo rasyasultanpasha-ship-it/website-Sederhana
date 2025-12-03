@@ -91,5 +91,5 @@ rasyasultanpasha@gmail.com  |	123456
 
 
 ```sh
-git clone https://github.com/rasya/website-Sederhana.git
+git clone https://github.com/rasyasultanpasha-ship-it/website-Sederhana.git
 ![Screenshot Tampilan UI](assets/img/Tampilan_ui.png)
