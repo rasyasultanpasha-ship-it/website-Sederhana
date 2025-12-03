@@ -77,19 +77,14 @@ Akses project melalui browser:
 
 http://website-sederhana.test/
 
-
 Jika domain belum otomatis terdeteksi, kamu juga bisa akses melalui:
-
 http://localhost/website-Sederhana/
 
-🧪 Akun Uji Coba
-
+🧪 Akun Pengetesan 
 Gunakan akun berikut untuk login ke aplikasi:
 
 Email	Password
 rasyasultanpasha@gmail.com  |	123456
-
-
 ```sh
 git clone https://github.com/rasyasultanpasha-ship-it/website-Sederhana.git
 ![Screenshot Tampilan UI](assets/img/Tampilan_ui.png)
