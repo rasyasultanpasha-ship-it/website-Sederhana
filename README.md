@@ -29,62 +29,60 @@ Website ini merupakan project latihan magang untuk membangun aplikasi sederhana 
 
 ---
 
-## 📦 Cara Install dan Menjalankan Project
-Cara Instalasi & Menjalankan Project
+## Cara Install dan Menjalankan Project
 
-Ikuti langkah berikut untuk menjalankan project di komputer lokal:
+### 1. Clone atau Download Project
 
-1️⃣ Clone Repository ke Folder Laragon
+Download project sebagai ZIP atau clone repository:
 
-Pastikan kamu berada di direktori:
-
-C:\laragon\www\
-
-git clone https://github.com/rasyasultanpasha-ship-it/website-Sederhana.git
-
-
-Setelah clone, pastikan folder bernama:
-
-website-Sederhana
-
-2️⃣ Import Database
-
-Buka phpMyAdmin
-
-Klik New → Buat database baru dengan nama:
-
-db_customer
-
-
-Klik database tersebut → pilih tab Import
-
-Pilih file:
-
-db_customer.sql
-
-
-yang berada di dalam folder project
-
-Klik Go untuk import database
-
-3️⃣ Jalankan Project
-
-Buka Laragon
-
-Klik Start All untuk menjalankan Apache & MySQL
-
-Akses project melalui browser:
-
-http://website-sederhana.test/
-
-Jika domain belum otomatis terdeteksi, kamu juga bisa akses melalui:
-http://localhost/website-Sederhana/
-
-🧪 Akun Pengetesan 
-Gunakan akun berikut untuk login ke aplikasi:
-
-Email	Password
-rasyasultanpasha@gmail.com  |	123456
+bash
+contoh --> 
 ```sh
 git clone https://github.com/rasyasultanpasha-ship-it/website-Sederhana.git
+
+
+### 2. Install Dependencies
+
+Jika menggunakan PHP + MySQL dan Laragon:
+
+* Pastikan *Laragon* sudah terinstall
+* Pindahkan folder project ke dalam:
+
+
+contoh --> D:/Laragon/www/website-sederhana/
+
+
+### 3. Import Database
+
+* Buka *phpMyAdmin6* melalui menu Laragon → Database
+* Buat database baru
+* Import file SQL dari folder backup (.sql)
+
+### 4. Konfigurasi Koneksi Database
+
+Edit file:
+
+
+contoh --> config/koneksi.php
+
+
+Sesuaikan dengan:
+
+php
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$db   = 'db_website_sederhana';
+
+
+### 5. Jalankan Project
+
+Akses melalui browser:
+
+
+http://localhost/website-sederhana/
+
+
+--- Project siap dijalankan ---
+### ini tampilan ui
 ![Screenshot Tampilan UI](assets/img/Tampilan_ui.png)
